@@ -33,6 +33,7 @@ export class Terminal extends Middleware<MainContext> {
     document.addEventListener("keydown", this.handleKeydown);
     document.addEventListener("keyup", this.handleKeyup);
 
+    this.handleViewport();
     this.emit("terminal-start");
   };
 
