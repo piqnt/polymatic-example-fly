@@ -17,17 +17,12 @@ export class Loader extends Middleware<MainContext> {
   handleActivate = async () => {
     // Textures
     await Stage.atlas({
-      image: {
-        src: mainImg,
-        ratio: 4,
-      },
+      image: { src: mainImg, ratio: 4 },
+      ppu: 16,
       textures: {
-        drone: {
-          x: 0,
-          y: 0,
-          width: 16,
-          height: 16,
-        },
+        plane: { x: 0, y: 0, width: 1, height: 1 },
+        shadow: { x: 0, y: 1, width: 1, height: 1 },
+        explode: { x: 1, y: 0, width: 3, height: 3 },
       },
     });
 

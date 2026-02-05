@@ -78,6 +78,8 @@ export class Terminal extends Middleware<MainContext> {
       this.context.control = { trust: { main: accMain, side: accSide } };
     } else if (accX || accSide) {
       this.context.control = { direction: { x: accX, y: accY } };
+    } else {
+      this.context.control = {};
     }
   };
 
@@ -98,10 +100,10 @@ export class Terminal extends Middleware<MainContext> {
     enter: (d: Drone) => {
       const position = Stage.component();
       position.pin("handle", 0.5);
-      const drone = Stage.sprite("drone");
+      const drone = Stage.sprite("plane");
       drone.pin("handle", 0.5);
       drone.appendTo(position);
-      const shadow = Stage.sprite("drone");
+      const shadow = Stage.sprite("shadow");
       shadow.pin("handle", 0.5);
       shadow.pin({
         alpha: 0.2,
