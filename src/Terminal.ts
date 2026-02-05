@@ -7,11 +7,11 @@ import { type Vec2Value } from "stage-js";
 import { Binder, Driver, Middleware } from "polymatic";
 
 import { type MainContext } from "./Main";
-import { Drone } from "./Data";
+import { Plane } from "./Data";
 
-interface DroneRender {
+interface PlaneRender {
   position: Stage.Node;
-  drone: Stage.Sprite;
+  plane: Stage.Sprite;
   shadow: Stage.Sprite;
 }
 
@@ -45,7 +45,7 @@ export class Terminal extends Middleware<MainContext> {
   };
 
   handleFrameRender = () => {
-    this.binder.data(this.context.drones);
+    this.binder.data(this.context.planes);
   };
 
   pointerDown = false;
@@ -95,14 +95,14 @@ export class Terminal extends Middleware<MainContext> {
     this.context.stage.touch();
   };
 
-  renderDrone = Driver.create<Drone, DroneRender>({
-    filter: (d: Drone) => true,
-    enter: (d: Drone) => {
+  renderPlane = Driver.create<Plane, PlaneRender>({
+    filter: (d: Plane) => true,
+    enter: (d: Plane) => {
       const position = Stage.component();
       position.pin("handle", 0.5);
-      const drone = Stage.sprite("plane");
-      drone.pin("handle", 0.5);
-      drone.appendTo(position);
+      const plane = Stage.sprite("plane");
+      plane.pin("handle", 0.5);
+      plane.appendTo(position);
       const shadow = Stage.sprite("shadow");
       shadow.pin("handle", 0.5);
       shadow.pin({
@@ -114,22 +114,22 @@ export class Terminal extends Middleware<MainContext> {
       position.appendTo(this.context.stage);
       return {
         shadow,
-        drone,
+        plane: plane,
         position,
       };
     },
-    update: (d: Drone, ui: DroneRender) => {
+    update: (d: Plane, ui: PlaneRender) => {
       const tilt = 1 - (Math.abs(d.tilt) / Math.PI) * 400;
-      ui.drone.rotate(d.angle).scale(1, tilt);
+      ui.plane.rotate(d.angle).scale(1, tilt);
       ui.shadow.rotate(d.angle).scale(1, tilt);
       ui.position.offset(d.position);
     },
-    exit: (d: Drone, ui: DroneRender) => {
+    exit: (d: Plane, ui: PlaneRender) => {
       ui.position.remove();
     },
   });
 
-  binder = Binder.create<Drone>({
+  binder = Binder.create<Plane>({
     key: (object) => object.key,
-  }).addDriver(this.renderDrone);
+  }).addDriver(this.renderPlane);
 }

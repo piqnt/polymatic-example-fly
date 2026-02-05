@@ -3,8 +3,8 @@
 
 import { nanoid } from "nanoid";
 
-export class Drone {
-  key = "drone-" + nanoid(6);
+export class Plane {
+  key = "plane-" + nanoid(6);
 
   // config
   vMin: number;
@@ -18,7 +18,7 @@ export class Drone {
   angle: number;
   tilt: number;
 
-  constructor(config: DroneConfig) {
+  constructor(config: PlaneConfig) {
     this.vMin = config.vMin;
     this.vMax = config.vMax;
     this.aMax = config.aMax;
@@ -31,13 +31,13 @@ export class Drone {
   }
 }
 
-export interface DroneConfig {
+export interface PlaneConfig {
   vMin: number;
   vMax: number;
   aMax: number;
 }
 
-export interface DroneControl {
+export interface PlaneControl {
   trust?: { main: number; side: number };
   direction?: { x: number; y: number };
   circle?: { x: number; y: number };

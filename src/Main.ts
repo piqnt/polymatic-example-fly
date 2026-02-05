@@ -4,7 +4,7 @@
 import * as Stage from "stage-js";
 import { Middleware } from "polymatic";
 
-import { type Drone, type Field, type DroneControl } from "./Data";
+import { type Plane, type Field, type PlaneControl } from "./Data";
 import { Airspace } from "./Airspace";
 import { Terminal } from "./Terminal";
 import { Loader } from "./Loader";
@@ -13,8 +13,8 @@ import { FrameLoop } from "./FrameLoop";
 export interface MainContext {
   stage?: Stage.Root;
 
-  drones?: Drone[];
-  control: DroneControl;
+  planes?: Plane[];
+  control: PlaneControl;
   running: boolean;
   field: Field;
 }

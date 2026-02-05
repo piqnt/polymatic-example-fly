@@ -1,8 +1,8 @@
-# Drone Game - Polymatic Example
+# Fly Game - Polymatic Example
 
 Implemented using [Polymatic](https://github.com/piqnt/polymatic) framework and [Stage.js](https://github.com/piqnt/stage.js) rendering engine.
 
-[Play Live Demo](https://piqnt.github.io/polymatic-example-drone/)
+[Play Live Demo](https://piqnt.github.io/polymatic-example-fly/)
 
 Use mouse/touch, arrow keys, and w/a/s/d keys to play.
 

@@ -1,5 +1,5 @@
 export default {
-  base: '/polymatic-example-drone/',
+  base: '/polymatic-example-fly/',
   build: {
   }
 }
