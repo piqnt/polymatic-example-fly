@@ -25,3 +25,7 @@ yarn-error.log*
 
 # rollup
 .rollup.cache
+
+# build output
+build
+dist

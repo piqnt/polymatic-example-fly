@@ -1,17 +1,19 @@
 // Copyright (c) Ali Shakiba
 // Licensed under the MIT License
 
-import * as Stage from "stage-js";
+import { type Application, type Container } from "pixi.js";
 import { Middleware } from "polymatic";
 
 import { type Plane, type Field, type PlaneControl } from "./Data";
 import { Airspace } from "./Airspace";
 import { Terminal } from "./Terminal";
-import { Loader } from "./Loader";
+import { PixiManager, type Textures } from "./PixiManager";
 import { FrameLoop } from "./FrameLoop";
 
 export interface MainContext {
-  stage?: Stage.Root;
+  pixi?: Application;
+  scene?: Container;
+  textures?: Textures;
 
   planes?: Plane[];
   control: PlaneControl;
@@ -22,12 +24,12 @@ export interface MainContext {
 export class Main extends Middleware<MainContext> {
   constructor() {
     super();
-    this.use(new FrameLoop())
-    this.use(new Loader());
-    this.on("stage-ready", this.handleStageReady);
+    this.use(new FrameLoop());
+    this.use(new PixiManager());
+    this.on("pixi-ready", this.handlePixiReady);
   }
 
-  handleStageReady = () => {
+  handlePixiReady = () => {
     this.use(new Airspace());
     this.use(new Terminal());
   };
